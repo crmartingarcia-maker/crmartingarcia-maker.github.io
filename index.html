@@ -2,10 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>My Customer.io lab website</title>
 </head>
 <body>
   <h1>My Customer.io lab website</h1>
   <p>This page is hosted on GitHub Pages.</p>
+
+  <h2>Sign up</h2>
+  <form id="signup">
+    <p><label>Email <input type="email" id="email" required></label></p>
+    <p><label>First name <input type="text" id="first_name" required maxlength="50"></label></p>
+    <p><button type="submit">Sign up</button></p>
+  </form>
+  <p id="status"></p>
+
+  <script>
+    const BACKEND = "https://cio-backend-osj9.onrender.com";
+
+    // One ID per visitor, saved in this browser. It must start with "web-".
+    function getUserId() {
+      let id = localStorage.getItem("lab_user_id");
+      if (!id) {
+        id = "web-" + Math.random().toString(16).slice(2, 14);
+        localStorage.setItem("lab_user_id", id);
+      }
+      return id;
+    }
+
+    // Sends one request to the backend and stops with an error if it fails.
+    async function post(path, body) {
+      const response = await fetch(BACKEND + path, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+      if (!response.ok) {
+        throw new Error(path + " failed with status " + response.status);
+      }
+      return response.json();
+    }
+
+    document.getElementById("signup").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const status = document.getElementById("status");
+      status.textContent = "Sending...";
+      const userId = getUserId();
+      try {
+        await post("/identify", {
+          user_id: userId,
+          traits: {
+            email: document.getElementById("email").value,
+            first_name: document.getElementById("first_name").value
+          }
+        });
+        await post("/track", {
+          user_id: userId,
+          event: "form_submitted",
+          properties: { form: "signup" }
+        });
+        status.textContent = "Thank you! Your details were sent.";
+      } catch (error) {
+        status.textContent = "Something went wrong. Please try again.";
+        console.error(error);
+      }
+    });
+  </script>
 </body>
 </html>
