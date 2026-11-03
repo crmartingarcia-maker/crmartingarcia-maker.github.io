@@ -3,19 +3,592 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Customer.io lab website</title>
+  <title>Pinewood Studios | Yoga classes</title>
+  <meta name="description" content="Pinewood Studios is a fictional yoga studio with small classes, soft light and a quiet room.">
+  <style>
+    :root {
+      --sage-50: #f3f6f0;
+      --sage-100: #e4ebdd;
+      --sage-200: #cddac4;
+      --sage-300: #b0c4a6;
+      --sage-400: #94ac89;
+      --sage-500: #7a9470;
+      --sage-600: #5f7a57;
+      --sage-700: #48613f;
+      --sage-800: #334a35;
+      --sage-900: #223226;
+      --butter: #f4ecd2;
+      --ink: #1d2b21;
+      --muted: #3f5443;
+      --serif: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--ink);
+      background: var(--sage-50);
+    }
+
+    a { color: inherit; }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      z-index: 20;
+      padding: 0.6rem 1rem;
+      color: #fff;
+      background: var(--sage-900);
+      border-radius: 8px;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    .wrap {
+      width: min(1120px, 100% - 2.5rem);
+      margin-inline: auto;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--sage-900);
+      outline-offset: 3px;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(244, 236, 210, 0.85) 0, rgba(244, 236, 210, 0) 38%),
+        radial-gradient(circle at 92% 80%, rgba(148, 172, 137, 0.55) 0, rgba(148, 172, 137, 0) 45%),
+        linear-gradient(165deg, #e9f0e3 0%, #d5e1cb 55%, #c2d3b7 100%);
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.4rem 0;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--sage-900);
+      text-decoration: none;
+    }
+    .brand svg { width: 28px; height: 34px; flex: none; }
+
+    .nav { display: flex; align-items: center; gap: 1.6rem; }
+    .nav a {
+      color: var(--sage-900);
+      font-weight: 600;
+      font-size: 0.98rem;
+      text-decoration: none;
+    }
+    .nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .nav .nav-join {
+      padding: 0.5rem 1.15rem;
+      color: #fff;
+      background: var(--sage-800);
+      border-radius: 999px;
+    }
+    .nav .nav-join:hover { background: var(--sage-900); text-decoration: none; }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3.5rem;
+      align-items: center;
+      padding: 2.5rem 0 9rem;
+    }
+
+    .next-class {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0 0 1.5rem;
+      padding: 0.4rem 1rem 0.4rem 0.8rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--sage-900);
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid var(--sage-300);
+      border-radius: 999px;
+    }
+    .next-class::before {
+      content: "";
+      width: 0.65rem;
+      height: 0.65rem;
+      background: var(--sage-600);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(95, 122, 87, 0.25);
+    }
+
+    .hero h1 {
+      margin: 0 0 1.4rem;
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(2.8rem, 6.4vw, 5rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      color: var(--sage-900);
+    }
+    .hero .lede {
+      margin: 0 0 2rem;
+      max-width: 33rem;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+    .btn {
+      display: inline-block;
+      padding: 0.95rem 1.8rem;
+      font: inherit;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 999px;
+      border: 2px solid var(--sage-800);
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .btn-primary { color: #fff; background: var(--sage-800); }
+    .btn-primary:hover { background: var(--sage-900); border-color: var(--sage-900); }
+    .btn-ghost { color: var(--sage-900); background: transparent; }
+    .btn-ghost:hover { background: rgba(255, 255, 255, 0.6); }
+
+    /* Arch illustration */
+    .art { display: flex; justify-content: center; }
+    .art svg {
+      width: min(100%, 400px);
+      height: auto;
+      overflow: visible;
+      filter: drop-shadow(0 26px 32px rgba(34, 50, 38, 0.2));
+    }
+    .breathe {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: breathe 8s ease-in-out infinite;
+    }
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.045); }
+    }
+
+    /* ---------- Sign-up band ---------- */
+    .join {
+      position: relative;
+      z-index: 2;
+      margin-top: -5.5rem;
+      scroll-margin-top: 1rem;
+    }
+    .card {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 2.5rem;
+      align-items: center;
+      padding: 2.5rem 2.75rem;
+      background: #fcfdfb;
+      border: 1px solid var(--sage-200);
+      border-radius: 28px;
+      box-shadow: 0 30px 60px rgba(34, 50, 38, 0.18);
+    }
+    .card h2 {
+      margin: 0 0 0.6rem;
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      line-height: 1.15;
+      color: var(--sage-900);
+    }
+    .card .intro { margin: 0; color: var(--muted); }
+
+    .fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .field label {
+      display: block;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--sage-900);
+    }
+    .field input {
+      display: block;
+      width: 100%;
+      margin-top: 0.4rem;
+      padding: 0.85rem 1rem;
+      font: inherit;
+      color: var(--ink);
+      background: #fff;
+      border: 1.5px solid #6d8264;
+      border-radius: 12px;
+    }
+    .field input:hover { border-color: var(--sage-800); }
+    .field input:focus-visible {
+      outline: 3px solid var(--sage-800);
+      outline-offset: 2px;
+      border-color: var(--sage-800);
+    }
+
+    button[type="submit"] {
+      display: block;
+      width: 100%;
+      margin-top: 1.1rem;
+      padding: 1rem 1.4rem;
+      font: inherit;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #fff;
+      background: var(--sage-800);
+      border: 2px solid var(--sage-800);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+    button[type="submit"]:hover { background: var(--sage-900); border-color: var(--sage-900); }
+
+    #status {
+      min-height: 1.65em;
+      margin: 0.9rem 0 0;
+      font-weight: 600;
+      color: var(--sage-800);
+    }
+
+    /* ---------- Classes ---------- */
+    .classes {
+      padding: 5.5rem 0 5rem;
+      scroll-margin-top: 1rem;
+    }
+    .section-head { max-width: 38rem; margin-bottom: 2.5rem; }
+    .section-head h2 {
+      margin: 0 0 0.6rem;
+      font-family: var(--serif);
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--sage-900);
+    }
+    .section-head p { margin: 0; color: var(--muted); }
+
+    .schedule {
+      display: grid;
+      gap: 0.85rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .schedule li {
+      display: grid;
+      grid-template-columns: 13rem 1fr auto;
+      gap: 0.4rem 2rem;
+      align-items: center;
+      padding: 1.3rem 1.75rem;
+      background: #fff;
+      border: 1px solid var(--sage-200);
+      border-left: 8px solid var(--sage-400);
+      border-radius: 18px;
+    }
+    .schedule li:nth-child(2) { border-left-color: var(--sage-500); }
+    .schedule li:nth-child(3) { border-left-color: var(--sage-600); }
+    .schedule li:nth-child(4) { border-left-color: var(--sage-700); }
+    .when strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      line-height: 1.2;
+      color: var(--sage-900);
+    }
+    .when span { color: var(--muted); font-weight: 600; }
+    .what strong {
+      display: block;
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+    .what span { color: var(--muted); }
+    .level {
+      padding: 0.3rem 0.9rem;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--sage-800);
+      background: var(--sage-100);
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    /* ---------- First visit ---------- */
+    .visit {
+      padding: 5.5rem 0;
+      background: var(--sage-100);
+      scroll-margin-top: 1rem;
+    }
+    .visit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    .visit .section-head { margin-bottom: 0; }
+
+    .panel {
+      margin: 0;
+      padding: 2.25rem 2.5rem;
+      color: #eef3ea;
+      background: var(--sage-800);
+      border-radius: 28px;
+    }
+    .panel div + div { margin-top: 1.4rem; }
+    .panel dt {
+      margin: 0 0 0.15rem;
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--sage-200);
+    }
+    .panel dd { margin: 0; }
+
+    /* ---------- Footer ---------- */
+    .site-footer {
+      padding: 3rem 0 3.25rem;
+      color: #d3dfcb;
+      background: var(--sage-900);
+    }
+    .site-footer p { margin: 0.25rem 0; font-size: 0.97rem; }
+    .site-footer .footer-brand {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* ---------- Tablet and phone ---------- */
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 1.5rem 0 8rem;
+      }
+      .art svg { width: min(100%, 330px); }
+      .card {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 2rem 1.75rem;
+      }
+      .visit-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .schedule li {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+        padding: 1.15rem 1.35rem;
+      }
+      .level { justify-self: start; margin-top: 0.3rem; }
+    }
+
+    @media (max-width: 560px) {
+      .nav a:not(.nav-join) { display: none; }
+      .fields { grid-template-columns: 1fr; }
+      .actions .btn { flex: 1 1 100%; text-align: center; }
+      .panel { padding: 1.75rem 1.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .breathe { animation: none; }
+      * { transition: none !important; }
+    }
+  </style>
 </head>
 <body>
-  <h1>My Customer.io lab website</h1>
-  <p>This page is hosted on GitHub Pages.</p>
+  <a class="skip-link" href="#signup-heading">Skip to the sign-up form</a>
 
-  <h2>Sign up</h2>
-  <form id="signup">
-    <p><label>Email <input type="email" id="email" required></label></p>
-    <p><label>First name <input type="text" id="first_name" required maxlength="50"></label></p>
-    <p><button type="submit">Sign up</button></p>
-  </form>
-  <p id="status"></p>
+  <div class="hero">
+    <div class="wrap">
+      <header class="site-header">
+        <a class="brand" href="#top">
+          <svg viewBox="0 0 28 34" aria-hidden="true" focusable="false">
+            <path d="M14 1 L22 12 H18 L25 22 H19 L27 32 H1 L9 22 H3 L10 12 H6 Z" fill="#334a35"/>
+            <rect x="12.5" y="30" width="3" height="4" fill="#223226"/>
+          </svg>
+          Pinewood Studios
+        </a>
+        <nav class="nav" aria-label="Main">
+          <a href="#classes">Classes</a>
+          <a href="#visit">First visit</a>
+          <a class="nav-join" href="#join">Join</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <div class="hero-inner">
+          <div>
+            <p class="next-class">Next class: Morning Flow, Monday at 7:00 am</p>
+            <h1>Come home to your breath</h1>
+            <p class="lede">Pinewood Studios is a small yoga studio with soft light and a cedar-scented room. Classes move at an unhurried pace, and beginners are always welcome.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="#join">Join the list</a>
+              <a class="btn btn-ghost" href="#classes">See the schedule</a>
+            </div>
+          </div>
+
+          <div class="art">
+            <svg viewBox="-20 -20 440 540" aria-hidden="true" focusable="false">
+              <defs>
+                <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#f6efd6"/>
+                  <stop offset="0.6" stop-color="#e6eedc"/>
+                  <stop offset="1" stop-color="#d3e0c9"/>
+                </linearGradient>
+                <clipPath id="arch">
+                  <path d="M0 476 V200 A200 200 0 0 1 400 200 V476 Q400 500 376 500 H24 Q0 500 0 476 Z"/>
+                </clipPath>
+                <path id="leaf" d="M0 0 C8 -12 26 -12 34 0 C26 12 8 12 0 0 Z"/>
+                <g id="sprig">
+                  <path d="M372 232 C340 192 318 152 300 108" fill="none" stroke="#5f7a57" stroke-width="3" stroke-linecap="round"/>
+                  <use href="#leaf" transform="translate(356 206) rotate(-170)" fill="#7a9470"/>
+                  <use href="#leaf" transform="translate(356 206) rotate(-55)" fill="#94ac89"/>
+                  <use href="#leaf" transform="translate(334 170) rotate(-170)" fill="#94ac89"/>
+                  <use href="#leaf" transform="translate(334 170) rotate(-55)" fill="#7a9470"/>
+                  <use href="#leaf" transform="translate(315 134) rotate(-160)" fill="#7a9470"/>
+                  <use href="#leaf" transform="translate(315 134) rotate(-62)" fill="#94ac89"/>
+                  <use href="#leaf" transform="translate(301 108) rotate(-105)" fill="#5f7a57"/>
+                </g>
+              </defs>
+
+              <path d="M-14 500 V200 A214 214 0 0 1 414 200 V500" fill="none" stroke="#94ac89" stroke-width="2.5"/>
+
+              <g clip-path="url(#arch)">
+                <rect x="0" y="0" width="400" height="500" fill="url(#sky)"/>
+
+                <g class="breathe">
+                  <circle cx="200" cy="290" r="190" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="2"/>
+                  <circle cx="200" cy="290" r="158" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="2"/>
+                  <circle cx="200" cy="290" r="128" fill="none" stroke="#ffffff" stroke-opacity="0.6" stroke-width="2"/>
+                  <circle cx="200" cy="290" r="100" fill="#fbf6e3"/>
+                </g>
+
+                <use href="#sprig"/>
+                <use href="#sprig" transform="translate(400 0) scale(-1 1)"/>
+
+                <path d="M0 340 C60 300 120 310 190 335 C260 360 330 300 400 320 V500 H0 Z" fill="#bccfb1"/>
+                <path d="M0 380 C70 345 150 350 220 372 C290 392 350 350 400 362 V500 H0 Z" fill="#94ac89"/>
+                <path d="M0 408 C90 384 160 392 200 396 C260 400 330 380 400 400 V500 H0 Z" fill="#5f7a57"/>
+
+                <g fill="#223226" stroke="#223226">
+                  <circle cx="200" cy="268" r="17" stroke="none"/>
+                  <rect x="194" y="282" width="12" height="14" stroke="none"/>
+                  <path d="M176 382 C174 332 184 292 200 292 C216 292 226 332 224 382 Z" stroke="none"/>
+                  <path d="M184 312 C168 338 158 362 150 382" fill="none" stroke-width="10" stroke-linecap="round"/>
+                  <path d="M216 312 C232 338 242 362 250 382" fill="none" stroke-width="10" stroke-linecap="round"/>
+                  <path d="M126 390 C126 370 160 362 200 370 C240 362 274 370 274 390 C274 404 240 402 200 396 C160 402 126 404 126 390 Z" stroke="none"/>
+                </g>
+
+                <path d="M0 450 C100 430 300 436 400 448 V500 H0 Z" fill="#334a35"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <section class="join" id="join" aria-labelledby="signup-heading">
+    <div class="wrap">
+      <div class="card">
+        <div>
+          <h2 id="signup-heading">Join the Pinewood list</h2>
+          <p class="intro">Leave your email and first name to hear about new classes. First-time guests also receive an introductory offer.</p>
+        </div>
+
+        <div>
+          <form id="signup">
+            <div class="fields">
+              <div class="field">
+                <label>Email <input type="email" id="email" required autocomplete="email"></label>
+              </div>
+              <div class="field">
+                <label>First name <input type="text" id="first_name" required maxlength="50" autocomplete="given-name"></label>
+              </div>
+            </div>
+            <button type="submit">Sign up</button>
+          </form>
+          <p id="status" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="classes" id="classes" aria-labelledby="classes-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="classes-heading">This week at Pinewood</h2>
+        <p>Every class lasts 60 minutes and takes place in the main room. Mats, blocks and blankets are waiting for you.</p>
+      </div>
+
+      <ul class="schedule">
+        <li>
+          <span class="when"><strong>Monday</strong><span>7:00 am</span></span>
+          <span class="what"><strong>Morning Flow</strong><span>A gentle sequence that wakes up the whole body.</span></span>
+          <span class="level">All levels</span>
+        </li>
+        <li>
+          <span class="when"><strong>Wednesday</strong><span>6:30 pm</span></span>
+          <span class="what"><strong>Slow Hatha</strong><span>Long holds and careful alignment after a busy day.</span></span>
+          <span class="level">Beginner friendly</span>
+        </li>
+        <li>
+          <span class="when"><strong>Friday</strong><span>7:00 pm</span></span>
+          <span class="what"><strong>Yin and Restore</strong><span>Floor poses held for several minutes with plenty of support.</span></span>
+          <span class="level">All levels</span>
+        </li>
+        <li>
+          <span class="when"><strong>Sunday</strong><span>9:30 am</span></span>
+          <span class="what"><strong>Sunday Stretch</strong><span>Easy movement and long breaths to close out the week.</span></span>
+          <span class="level">All levels</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="visit" id="visit" aria-labelledby="visit-heading">
+    <div class="wrap visit-grid">
+      <div class="section-head">
+        <h2 id="visit-heading">Your first visit</h2>
+        <p>A first class at Pinewood is easy to settle into. Your teacher greets everyone at the door, shows you around the room and asks whether anything in your body needs special care.</p>
+      </div>
+
+      <dl class="panel">
+        <div>
+          <dt>Arrive</dt>
+          <dd>Ten minutes before class starts, which leaves time to unroll a mat and choose a spot.</dd>
+        </div>
+        <div>
+          <dt>Bring</dt>
+          <dd>A water bottle and clothes that stretch comfortably.</dd>
+        </div>
+        <div>
+          <dt>Space</dt>
+          <dd>Twelve guests at most share the room, so everyone has space to move.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="footer-brand">Pinewood Studios</p>
+      <p>12 Cedar Lane, Fernhollow</p>
+    </div>
+  </footer>
 
   <script>
     const BACKEND = "https://cio-backend-osj9.onrender.com";
