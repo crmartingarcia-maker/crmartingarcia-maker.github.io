@@ -480,7 +480,7 @@
               <li>Up to 14 guests</li>
             </ul>
             <div class="actions">
-              <a class="btn btn-primary" href="/" aria-label="Book now: Hidden Closes Stroll">Book now</a>
+              <a class="btn btn-primary" href="/" aria-label="Book now: Hidden Closes Stroll" data-track="tour_page_book_clicked">Book now</a>
               <a class="btn btn-ghost" href="#route">See the route</a>
             </div>
           </div>
