@@ -721,5 +721,15 @@
       }
     });
   </script>
+<script>
+  document.addEventListener("click", function (event) {
+    var element = event.target.closest("[data-track]");
+    if (!element) return;
+    cioanalytics.track(element.getAttribute("data-track"), {
+      label: element.textContent.trim().slice(0, 80),
+      page: window.location.pathname
+    });
+  });
+</script>
 </body>
 </html>
