@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pinewood Studios | Yoga classes</title>
+  <title>Edinburgh Tours | Walking tours</title>
   <script>
   !function(){var i="cioanalytics", analytics=(window[i]=window[i]||[]);if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.setAttribute('data-global-customerio-analytics-key', i);t.src="https://cdp-eu.customer.io/v1/analytics-js/snippet/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._writeKey=key;analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.15.3";
     analytics.load(
@@ -20,7 +20,7 @@
     analytics.page();
   }}();
 </script>
-  <meta name="description" content="Pinewood Studios is a fictional yoga studio with small classes, soft light and a quiet room.">
+  <meta name="description" content="Edinburgh Tours is a fictional walking-tour company with small groups, lantern-lit stories and quiet hilltop mornings.">
   <style>
     :root {
       --sage-50: #f3f6f0;
@@ -103,7 +103,7 @@
       color: var(--sage-900);
       text-decoration: none;
     }
-    .brand svg { width: 28px; height: 34px; flex: none; }
+    .brand svg { width: 34px; height: 30px; flex: none; }
 
     .nav { display: flex; align-items: center; gap: 1.6rem; }
     .nav a {
@@ -144,6 +144,7 @@
     }
     .next-class::before {
       content: "";
+      flex: none;
       width: 0.65rem;
       height: 0.65rem;
       background: var(--sage-600);
@@ -343,6 +344,18 @@
       white-space: nowrap;
     }
 
+    .tour-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.75rem;
+    }
+    .btn-book {
+      padding: 0.5rem 1.25rem;
+      font-size: 0.97rem;
+    }
+
     /* ---------- First visit ---------- */
     .visit {
       padding: 5.5rem 0;
@@ -407,7 +420,7 @@
         gap: 0.35rem;
         padding: 1.15rem 1.35rem;
       }
-      .level { justify-self: start; margin-top: 0.3rem; }
+      .tour-actions { justify-content: flex-start; margin-top: 0.3rem; }
     }
 
     @media (max-width: 560px) {
@@ -431,15 +444,17 @@
     <div class="wrap">
       <header class="site-header">
         <a class="brand" href="#top">
-          <svg viewBox="0 0 28 34" aria-hidden="true" focusable="false">
-            <path d="M14 1 L22 12 H18 L25 22 H19 L27 32 H1 L9 22 H3 L10 12 H6 Z" fill="#334a35"/>
-            <rect x="12.5" y="30" width="3" height="4" fill="#223226"/>
+          <svg viewBox="0 0 34 30" aria-hidden="true" focusable="false">
+            <path d="M0 29 L9 17 L13 20 L19 12 L24 18 L28 14 L34 29 Z" fill="#5f7a57"/>
+            <path d="M8 29 V15 H11 V13 H14 V15 H17 V13 H20 V15 H23 V29 Z" fill="#334a35"/>
+            <path d="M15 15 V6 L18.5 1 L22 6 V15 Z" fill="#223226"/>
+            <rect x="12" y="23" width="4" height="6" fill="#f4ecd2"/>
           </svg>
-          Pinewood Studios
+          Edinburgh Tours
         </a>
         <nav class="nav" aria-label="Main">
-          <a href="#classes">Classes</a>
-          <a href="#visit">First visit</a>
+          <a href="#classes">Tours</a>
+          <a href="#visit">Before you go</a>
           <a class="nav-join" href="#join">Join</a>
         </nav>
       </header>
@@ -447,12 +462,12 @@
       <main id="top">
         <div class="hero-inner">
           <div>
-            <p class="next-class">Next class: Morning Flow, Monday at 7:00 am</p>
-            <h1>Come home to your breath</h1>
-            <p class="lede">Pinewood Studios is a small yoga studio with soft light and a cedar-scented room. Classes move at an unhurried pace, and beginners are always welcome.</p>
+            <p class="next-class">Next tour: Old Town Walk, Saturday at 10:00 am</p>
+            <h1>Discover Edinburgh on foot</h1>
+            <p class="lede">Edinburgh Tours leads small-group walks through cobbled closes, lantern-lit stories and quiet hilltops. Newcomers are always welcome.</p>
             <div class="actions">
               <a class="btn btn-primary" href="#join">Join the list</a>
-              <a class="btn btn-ghost" href="#classes">See the schedule</a>
+              <a class="btn btn-ghost" href="#classes">See the tours</a>
             </div>
           </div>
 
@@ -467,17 +482,6 @@
                 <clipPath id="arch">
                   <path d="M0 476 V200 A200 200 0 0 1 400 200 V476 Q400 500 376 500 H24 Q0 500 0 476 Z"/>
                 </clipPath>
-                <path id="leaf" d="M0 0 C8 -12 26 -12 34 0 C26 12 8 12 0 0 Z"/>
-                <g id="sprig">
-                  <path d="M372 232 C340 192 318 152 300 108" fill="none" stroke="#5f7a57" stroke-width="3" stroke-linecap="round"/>
-                  <use href="#leaf" transform="translate(356 206) rotate(-170)" fill="#7a9470"/>
-                  <use href="#leaf" transform="translate(356 206) rotate(-55)" fill="#94ac89"/>
-                  <use href="#leaf" transform="translate(334 170) rotate(-170)" fill="#94ac89"/>
-                  <use href="#leaf" transform="translate(334 170) rotate(-55)" fill="#7a9470"/>
-                  <use href="#leaf" transform="translate(315 134) rotate(-160)" fill="#7a9470"/>
-                  <use href="#leaf" transform="translate(315 134) rotate(-62)" fill="#94ac89"/>
-                  <use href="#leaf" transform="translate(301 108) rotate(-105)" fill="#5f7a57"/>
-                </g>
               </defs>
 
               <path d="M-14 500 V200 A214 214 0 0 1 414 200 V500" fill="none" stroke="#94ac89" stroke-width="2.5"/>
@@ -492,23 +496,42 @@
                   <circle cx="200" cy="290" r="100" fill="#fbf6e3"/>
                 </g>
 
-                <use href="#sprig"/>
-                <use href="#sprig" transform="translate(400 0) scale(-1 1)"/>
-
+                <!-- distant hill -->
                 <path d="M0 340 C60 300 120 310 190 335 C260 360 330 300 400 320 V500 H0 Z" fill="#bccfb1"/>
-                <path d="M0 380 C70 345 150 350 220 372 C290 392 350 350 400 362 V500 H0 Z" fill="#94ac89"/>
-                <path d="M0 408 C90 384 160 392 200 396 C260 400 330 380 400 400 V500 H0 Z" fill="#5f7a57"/>
 
-                <g fill="#223226" stroke="#223226">
-                  <circle cx="200" cy="268" r="17" stroke="none"/>
-                  <rect x="194" y="282" width="12" height="14" stroke="none"/>
-                  <path d="M176 382 C174 332 184 292 200 292 C216 292 226 332 224 382 Z" stroke="none"/>
-                  <path d="M184 312 C168 338 158 362 150 382" fill="none" stroke-width="10" stroke-linecap="round"/>
-                  <path d="M216 312 C232 338 242 362 250 382" fill="none" stroke-width="10" stroke-linecap="round"/>
-                  <path d="M126 390 C126 370 160 362 200 370 C240 362 274 370 274 390 C274 404 240 402 200 396 C160 402 126 404 126 390 Z" stroke="none"/>
+                <!-- castle crag -->
+                <path d="M110 404 L146 336 L172 318 L300 306 L336 322 L366 384 L384 404 Z" fill="#94ac89"/>
+
+                <!-- castle -->
+                <g fill="#334a35">
+                  <rect x="164" y="284" width="156" height="32"/>
+                  <rect x="176" y="262" width="18" height="24"/>
+                  <rect x="226" y="248" width="30" height="38"/>
+                  <polygon points="222,248 241,220 260,248"/>
+                  <rect x="288" y="264" width="24" height="22"/>
+                  <rect x="164" y="278" width="6" height="7"/>
+                  <rect x="178" y="278" width="6" height="7"/>
+                  <rect x="262" y="278" width="6" height="7"/>
+                  <rect x="276" y="278" width="6" height="7"/>
+                  <rect x="316" y="278" width="6" height="7"/>
+                  <rect x="240" y="206" width="2.5" height="16"/>
+                  <path d="M242.5 206 L256 210 L242.5 214 Z"/>
                 </g>
 
+                <!-- rooftops -->
+                <path d="M0 404 H30 V386 L44 372 L58 386 V396 H88 V380 H100 V370 H108 V380 H118 V392 L132 380 L146 392 V398 H190 V384 L204 368 L218 384 V396 H260 V382 H284 V392 H300 V376 L314 362 L328 376 V394 H356 V380 L370 368 L384 380 V400 H400 V500 H0 Z" fill="#5f7a57"/>
+
+                <!-- foreground street -->
                 <path d="M0 450 C100 430 300 436 400 448 V500 H0 Z" fill="#334a35"/>
+
+                <!-- walker with lantern -->
+                <g fill="#223226">
+                  <circle cx="90" cy="410" r="6.5"/>
+                  <path d="M82 442 L84 418 H96 L98 442 Z"/>
+                  <path d="M95 424 L106 430" fill="none" stroke="#223226" stroke-width="3.5" stroke-linecap="round"/>
+                </g>
+                <circle cx="108" cy="435" r="12" fill="#f4ecd2" fill-opacity="0.35"/>
+                <circle cx="108" cy="435" r="4.5" fill="#f4ecd2"/>
               </g>
             </svg>
           </div>
@@ -521,8 +544,8 @@
     <div class="wrap">
       <div class="card">
         <div>
-          <h2 id="signup-heading">Join the Pinewood list</h2>
-          <p class="intro">Leave your email and first name to hear about new classes. First-time guests also receive an introductory offer.</p>
+          <h2 id="signup-heading">Join the Edinburgh Tours list</h2>
+          <p class="intro">Leave your email and first name to hear about new walks. First-time guests also receive an introductory offer.</p>
         </div>
 
         <div>
@@ -546,30 +569,42 @@
   <section class="classes" id="classes" aria-labelledby="classes-heading">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="classes-heading">This week at Pinewood</h2>
-        <p>Every class lasts 60 minutes and takes place in the main room. Mats, blocks and blankets are waiting for you.</p>
+        <h2 id="classes-heading">This week with Edinburgh Tours</h2>
+        <p>Every walk lasts about two hours and moves at an easy pace. Your guide shares the meeting point by email before the day.</p>
       </div>
 
       <ul class="schedule">
         <li>
-          <span class="when"><strong>Monday</strong><span>7:00 am</span></span>
-          <span class="what"><strong>Morning Flow</strong><span>A gentle sequence that wakes up the whole body.</span></span>
-          <span class="level">All levels</span>
+          <span class="when"><strong>Wednesday</strong><span>2:00 pm</span></span>
+          <span class="what"><strong>Hidden Closes Stroll</strong><span>Narrow passages and quiet courtyards in the heart of the old city.</span></span>
+          <div class="tour-actions">
+            <span class="level">Gentle pace</span>
+            <a class="btn btn-primary btn-book" href="/" aria-label="Book now: Hidden Closes Stroll">Book now</a>
+          </div>
         </li>
         <li>
-          <span class="when"><strong>Wednesday</strong><span>6:30 pm</span></span>
-          <span class="what"><strong>Slow Hatha</strong><span>Long holds and careful alignment after a busy day.</span></span>
-          <span class="level">Beginner friendly</span>
+          <span class="when"><strong>Friday</strong><span>8:00 pm</span></span>
+          <span class="what"><strong>Evening Ghost-Story Walk</strong><span>Tales of lamplit lanes and creaking cellars, told as dusk settles in.</span></span>
+          <div class="tour-actions">
+            <span class="level">Ages 12 and up</span>
+            <a class="btn btn-primary btn-book" href="/" aria-label="Book now: Evening Ghost-Story Walk">Book now</a>
+          </div>
         </li>
         <li>
-          <span class="when"><strong>Friday</strong><span>7:00 pm</span></span>
-          <span class="what"><strong>Yin and Restore</strong><span>Floor poses held for several minutes with plenty of support.</span></span>
-          <span class="level">All levels</span>
+          <span class="when"><strong>Saturday</strong><span>10:00 am</span></span>
+          <span class="what"><strong>Old Town Walk</strong><span>Cobbled streets, grand stairways and centuries of stories from the ridge above the city.</span></span>
+          <div class="tour-actions">
+            <span class="level">All levels</span>
+            <a class="btn btn-primary btn-book" href="/" aria-label="Book now: Old Town Walk">Book now</a>
+          </div>
         </li>
         <li>
-          <span class="when"><strong>Sunday</strong><span>9:30 am</span></span>
-          <span class="what"><strong>Sunday Stretch</strong><span>Easy movement and long breaths to close out the week.</span></span>
-          <span class="level">All levels</span>
+          <span class="when"><strong>Sunday</strong><span>5:30 am</span></span>
+          <span class="what"><strong>Sunrise Hill Walk</strong><span>A steady climb to a wide view as the first light spreads over the rooftops.</span></span>
+          <div class="tour-actions">
+            <span class="level">Steady climb</span>
+            <a class="btn btn-primary btn-book" href="/" aria-label="Book now: Sunrise Hill Walk">Book now</a>
+          </div>
         </li>
       </ul>
     </div>
@@ -578,22 +613,22 @@
   <section class="visit" id="visit" aria-labelledby="visit-heading">
     <div class="wrap visit-grid">
       <div class="section-head">
-        <h2 id="visit-heading">Your first visit</h2>
-        <p>A first class at Pinewood is easy to settle into. Your teacher greets everyone at the door, shows you around the room and asks whether anything in your body needs special care.</p>
+        <h2 id="visit-heading">Before your walk</h2>
+        <p>Your first walk with Edinburgh Tours is easy to settle into. Your guide greets everyone at the meeting point, explains the route and asks whether anyone needs a slower pace or extra rest stops.</p>
       </div>
 
       <dl class="panel">
         <div>
           <dt>Arrive</dt>
-          <dd>Ten minutes before class starts, which leaves time to unroll a mat and choose a spot.</dd>
+          <dd>Ten minutes before the start, which leaves time to meet your guide and the rest of the group.</dd>
         </div>
         <div>
           <dt>Bring</dt>
-          <dd>A water bottle and clothes that stretch comfortably.</dd>
+          <dd>Comfortable shoes, a waterproof layer and a water bottle.</dd>
         </div>
         <div>
-          <dt>Space</dt>
-          <dd>Twelve guests at most share the room, so everyone has space to move.</dd>
+          <dt>Group</dt>
+          <dd>Fourteen guests at most join each walk, so everyone can hear the stories.</dd>
         </div>
       </dl>
     </div>
@@ -601,8 +636,8 @@
 
   <footer class="site-footer">
     <div class="wrap">
-      <p class="footer-brand">Pinewood Studios</p>
-      <p>12 Cedar Lane, Fernhollow</p>
+      <p class="footer-brand">Edinburgh Tours</p>
+      <p>A fictional walking-tour company. Meeting points are sent by email.</p>
     </div>
   </footer>
 
