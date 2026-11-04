@@ -454,7 +454,7 @@
         </a>
         <nav class="nav" aria-label="Main">
           <a href="#classes">Tours</a>
-          <a href="#visit">Before you go</a>
+          <a href="#visit" data-track="before_you_go_clicked">Before you go</a>
           <a class="nav-join" href="#join">Join</a>
         </nav>
       </header>
@@ -466,8 +466,8 @@
             <h1>Discover Edinburgh on foot</h1>
             <p class="lede">Edinburgh Tours leads small-group walks through cobbled closes, lantern-lit stories and quiet hilltops. Newcomers are always welcome.</p>
             <div class="actions">
-              <a class="btn btn-primary" href="#join">Join the list</a>
-              <a class="btn btn-ghost" href="#classes">See the tours</a>
+              <a class="btn btn-primary" href="#join" data-track="joins_list_clicked">Join the list</a>
+              <a class="btn btn-ghost" href="#classes" data-track="see_tours_clicked">See the tours</a>
             </div>
           </div>
 
@@ -579,7 +579,7 @@
           <span class="what"><strong>Hidden Closes Stroll</strong><span>Narrow passages and quiet courtyards in the heart of the old city.</span></span>
           <div class="tour-actions">
             <span class="level">Gentle pace</span>
-            <a class="btn btn-primary btn-book" href="/" aria-label="Book now: Hidden Closes Stroll">Book now</a>
+            <a class="btn btn-primary btn-book" href="/" aria-label="Book now: Hidden Closes Stroll" data-track="hidden_stroll_book_clicked">Book now</a>
           </div>
         </li>
         <li>
@@ -692,5 +692,15 @@
       }
     });
   </script>
+  <script>
+  document.addEventListener("click", function (event) {
+    var element = event.target.closest("[data-track]");
+    if (!element) return;
+    cioanalytics.track(element.getAttribute("data-track"), {
+      label: element.textContent.trim().slice(0, 80),
+      page: window.location.pathname
+    });
+  });
+</script>
 </body>
 </html>
